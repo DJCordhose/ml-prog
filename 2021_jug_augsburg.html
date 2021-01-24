@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>ML vs Prog</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="reveal/reset.css">
+		<link rel="stylesheet" href="reveal/reveal.css">
+		<!-- <link rel="stylesheet" href="reveal/theme/black.css" id="theme"> -->
+		<link rel="stylesheet" href="reveal/theme/solarized.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="reveal/plugin/highlight/monokai.css" id="highlight-theme">
+		<!-- <link rel="stylesheet" href="reveal/plugin/highlight/zenburn.css" id="highlight-theme"> -->
+
+		<style>
+
+	.reveal h1,
+	.reveal h2,
+    .reveal h3,
+    .reveal h4 {
+		font-family: 'Calibri', sans-serif;
+		letter-spacing: -2px;
+
+			font-weight: bold;
+			color: black;
+			font-style: italic;
+			text-transform: none !important;
+    }
+
+
+    .reveal pre code {
+      max-height: 1000px !important;
+    }
+
+	.todo:before {
+      content: 'TODO: ';
+    }
+
+    .todo {
+      color: red !important;
+    }
+
+
+		</style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+<!-- 
+Machine Learning: ein Programm, das ein Programm schreibt
+
+In der klassischer Software-Entwicklung schreibt ein Entwickler anhand von Anforderungen ein Programm. Im Machine
+Learning kann eine Lern-Strategie anhand von Daten ebenfalls ein Programm schreiben. Dies ist nicht offensichtlich, da
+ein manuell geschriebenes Programm aus Code besteht, während ein Machine Learning Modell davon abstrakt ist.
+
+In diesem Talk mache ich diesen Ansatz explizit indem ich aus einem abstrakten Machine Learning Modell Code generieren.
+Dabei lösen wir zusammen eine gegebene Aufgabe mit klassischer Programming, und trainieren zusätzliche ein Modell anhand
+von Daten. Am Ende vergleichen wir unseren handgeschriebenen Code mit dem erzeugten anhand von Qualitätsmerkmalen wie
+Lesbarkeit, Wartbarkeit, Testbarkeit und Interpretierbarkeit, wie gut die Aufgabe gelöst wird, etc. Als Bonus nutzen wir
+unseren selbst geschriebenen Code als Lehrer für das Machine Learning Modell und führen eine etwas sonderbare Art des
+Refactorings durch.
+ -->
+
+<section data-markdown class="preparation">
+### preparation
+
+- Open Notebook: https://colab.research.google.com/drive/183bcemb82wAckph5DKfv2qTp6Spac3w_#scrollTo=gKxCb0NoOQjM  
+</section>
+
+<section data-markdown>
+## Machine Learning
+### ein Programm, das ein Programm schreibt
+
+</section>
+
+<section data-markdown>
+  <textarea data-template>
+### Our Scenario for today: Predicting Risk
+
+* We are CTO of a highly innovative Car Insurance Company
+* Different from other insurance companies we determine the rate by the actual number of accidents per customer
+* _Objective: how many accidents will prospective customers have?_ 
+
+<img src='img/pixabay/accident-151668_1280.png' height="300px">
+  </textarea>
+</section>
+
+<section>
+<h3>The data we have</h3>
+<img src="img/1-risk-data.png" class="fragment">
+</section>
+
+
+<section data-markdown class="todo">
+Story
+1. 
+1. Metriken auf Code anwenden
+1.   
+</section>
+
+<section>
+<h3>object literal type checking</h3>
+<pre>
+  <code>
+type Basic = {
+  a: number;
+  b: string;
+}
+
+type BasicAndMore = Basic;
+
+const aha1: Basic = {
+  a: 10,
+  b: 'yo',
+  c: true // nope, assuming you did this in error
+};
+
+// works
+const aha2: Basic = {
+  a: 10,
+  b: 'yo',
+  c: true
+} as Basic;
+
+const more = {
+  a: 10,
+  b: 'yo',
+  c: true
+}
+
+// works as well
+const aha3: Basic = more;
+    
+</code></pre>
+<a href='https://www.typescriptlang.org/play?ssl=1&ssc=1&pln=29&pc=1#code/PTAEHsCMCsFMGMAuoA2BLRsBOBDFpEBPAB1lHgAsEBrNAOwHMBYAKCNNACEcBnNeUAF5QAb1ahQOAFyg6AVwC2kbAG5xoSDJ6Is9BmpYBfVq3ZlufeAEE6AEwCy4LGWEX+B1vHB1tkijgBGGTcBYTEWCWlQAIAGABp1TVAAckJwZISI8hkdOTIQWXBSOMkeHkU9UDS5UFs0WwIKNB5QelBsLCdWQw8WLx9kHH8AJmDefiFRdSjYzIkk1PS57IIsPO7SrnH4Xv7fBScXKayZ+MSZRYz1eBy12G6TPu9fIZwAZjHLSYPnXqA'>
+  Code in Playground
+</a>
+</section>
+
+			</div>
+
+		</div>
+
+		<script src="reveal/reveal.js"></script>
+		<script src="reveal/jquery-3.5.1.min.js"></script>
+		<script>
+			const isLocal =
+			  window.location.hostname.indexOf("localhost") !== -1 ||
+			  window.location.hostname.indexOf("127.0.0.1") !== -1;
+	  
+			if (isLocal) {
+			} else {
+			  // only applies to public version
+        // https://revealjs.com/slide-visibility/
+        $(".preparation").attr("data-visibility", "hidden");
+			  $(".todo").attr("data-visibility", "hidden");
+			}
+			Reveal.addEventListener("ready", function(event) {
+			  $(".fragments li").addClass("fragment");
+			  $(".no-fragments li").removeClass("fragment");
+	  
+			  // make all links open in new tab
+			  $("a").attr("target", "_blank");
+	  
+			  if (isLocal) {
+				// only applies to presentation version
+				Reveal.configure({ controls: false });
+			  } else {
+				// only applies to public version
+				$(".fragment").removeClass("fragment");
+        }
+        
+      });
+      
+			  // applies to all versions
+  			// $('section').attr('data-background-image', "backgrounds/sky.jpg");
+			  $("code").attr("data-line-numbers", true);
+			  $("code").attr("data-trim", true);
+			  $("code").attr("contenteditable", true);
+	  
+		</script>
+	  
+		<script src="reveal/plugin/zoom/zoom.js"></script>
+		<script src="reveal/plugin/notes/notes.js"></script>
+		<script src="reveal/plugin/search/search.js"></script>
+		<script src="reveal/plugin/markdown/markdown.js"></script>
+		<script src="reveal/plugin/highlight/highlight.js"></script>
+
+
+		<script>
+
+			// Also available as an ES module, see:
+			// https://revealjs.com/initialization/
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+				// width: "100%",
+				// height: "100%",
+
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight ]
+			});
+
+		</script>
+
+	</body>
+</html>
