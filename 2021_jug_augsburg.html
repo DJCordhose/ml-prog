@@ -80,6 +80,14 @@ Refactorings durch.
 - Open Notebook: https://colab.research.google.com/drive/183bcemb82wAckph5DKfv2qTp6Spac3w_#scrollTo=gKxCb0NoOQjM  
 </section>
 
+<section data-markdown class="todo">
+  Story
+  1. 
+  1. Metriken auf Code anwenden
+  1.   
+  </section>
+  
+  
 <section data-markdown>
 ## Machine Learning
 ### ein Programm, das ein Programm schreibt
@@ -98,57 +106,101 @@ Refactorings durch.
   </textarea>
 </section>
 
-<section>
-<h3>The data we have</h3>
-<img src="img/1-risk-data.png" class="fragment">
+<section data-markdown>
+### We have some data
+
+![](img/1-risk-data.png)
+</section>
+  
+<section data-markdown>
+### Random Decision Boundaries
+
+![](img/2-random-model.png)
+</section>
+  
+<section data-markdown>
+  <textarea data-template>
+### And let's introduce a metric for quality of any prediction        
+
+<script type="math/tex; mode=display">
+accuracy = {\frac {correct\;predictions}{number\;of\;samples}}
+</script>
+
+</textarea>
 </section>
 
-
-<section data-markdown class="todo">
-Story
-1. 
-1. Metriken auf Code anwenden
-1.   
-</section>
+<section data-markdown>
+### Accuracy for guessing is just 1/3 = 33%
+  
+![](img/2-random-model.png)
+  </section>
 
 <section>
-<h3>object literal type checking</h3>
+<h3>Programmers like rules</h3>
 <pre>
   <code>
-type Basic = {
-  a: number;
-  b: string;
-}
-
-type BasicAndMore = Basic;
-
-const aha1: Basic = {
-  a: 10,
-  b: 'yo',
-  c: true // nope, assuming you did this in error
-};
-
-// works
-const aha2: Basic = {
-  a: 10,
-  b: 'yo',
-  c: true
-} as Basic;
-
-const more = {
-  a: 10,
-  b: 'yo',
-  c: true
-}
-
-// works as well
-const aha3: Basic = more;
-    
+  if speed < 100:
+    return low
+  if speed > 140:
+    return high
+  return medium
 </code></pre>
-<a href='https://www.typescriptlang.org/play?ssl=1&ssc=1&pln=29&pc=1#code/PTAEHsCMCsFMGMAuoA2BLRsBOBDFpEBPAB1lHgAsEBrNAOwHMBYAKCNNACEcBnNeUAF5QAb1ahQOAFyg6AVwC2kbAG5xoSDJ6Is9BmpYBfVq3ZlufeAEE6AEwCy4LGWEX+B1vHB1tkijgBGGTcBYTEWCWlQAIAGABp1TVAAckJwZISI8hkdOTIQWXBSOMkeHkU9UDS5UFs0WwIKNB5QelBsLCdWQw8WLx9kHH8AJmDefiFRdSjYzIkk1PS57IIsPO7SrnH4Xv7fBScXKayZ+MSZRYz1eBy12G6TPu9fIZwAZjHLSYPnXqA'>
-  Code in Playground
+
+<img src='img/3-rule-based-model.png' height="300" class="fragment">
+<br>
+
+<a  class="fragment"
+href='https://colab.research.google.com/drive/183bcemb82wAckph5DKfv2qTp6Spac3w_?hl=en#scrollTo=LEt_LUcSbLhG'>
+  We can do better, let's try together
 </a>
 </section>
+
+<section data-markdown>
+### Best Model I could come up with
+  
+![](img/4-rule-based-model.png)
+
+68% accuracy
+  </section>
+
+  <section data-markdown class="fragments">
+### Taking one step back
+  
+* this was daten driven development
+* no formal specification given
+* was this test driven? 
+* test implicitly defined by data?
+* if so, why did we not achieve 100%?
+* should we?
+
+  </section>
+
+  <section data-markdown>
+### This model is close to a perfect score
+  
+![](img/knn.png)
+
+96% accuracy
+      </section>
+    
+
+<section data-markdown>
+## Should we try to achieve 100% accuracy?
+  </section>
+
+  <section data-markdown class="fragments">
+### We have optimized for the wrong metric
+
+* our metric: accuracy on known data
+* if data is unambiguous we can always achieve 100%
+* 
+  </section>
+
+  <section data-markdown>
+### Data and the World
+  
+![](img/data-and-the-world.jpg)
+  </section>
 
 			</div>
 
@@ -161,10 +213,12 @@ const aha3: Basic = more;
 			  window.location.hostname.indexOf("localhost") !== -1 ||
 			  window.location.hostname.indexOf("127.0.0.1") !== -1;
 	  
-			if (isLocal) {
+        // https://revealjs.com/slide-visibility/
+      if (isLocal) {
+        $(".preparation").attr("data-visibility", "uncounted");
+			  $(".todo").attr("data-visibility", "uncounted");
 			} else {
 			  // only applies to public version
-        // https://revealjs.com/slide-visibility/
         $(".preparation").attr("data-visibility", "hidden");
 			  $(".todo").attr("data-visibility", "hidden");
 			}
@@ -177,7 +231,7 @@ const aha3: Basic = more;
 	  
 			  if (isLocal) {
 				// only applies to presentation version
-				Reveal.configure({ controls: false });
+				// Reveal.configure({ controls: false });
 			  } else {
 				// only applies to public version
 				$(".fragment").removeClass("fragment");
@@ -198,6 +252,7 @@ const aha3: Basic = more;
 		<script src="reveal/plugin/search/search.js"></script>
 		<script src="reveal/plugin/markdown/markdown.js"></script>
 		<script src="reveal/plugin/highlight/highlight.js"></script>
+		<script src="reveal/plugin/math/math.js"></script>
 
 
 		<script>
@@ -214,7 +269,7 @@ const aha3: Basic = more;
 
 
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight ]
+				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMath ]
 			});
 
 		</script>
