@@ -49,7 +49,7 @@
     }
 
     img {
-      max-height: 450px !important;
+      max-height: 400px !important;
     
     }
 
@@ -85,14 +85,60 @@ Refactorings durch.
 - Open Notebook: https://colab.research.google.com/drive/183bcemb82wAckph5DKfv2qTp6Spac3w_#scrollTo=gKxCb0NoOQjM  
 </section>
 
+
 <section data-markdown class="todo">
-  Story
-  1. 
-  1. Metriken auf Code anwenden
-  1.   
+- bit.ly-Link
+</section>
+
+
+<section data-markdown class="todo">
+Metriken auf Code anwenden
   </section>
   
+
+<section data-markdown class="todo">
+### Induction
+
+- Phil PhD: https://sgfin.github.io/2020/06/22/Induction-Intro/
+  - https://twitter.com/IAmSamFin/status/1353404287540289536
+- https://twitter.com/ChristophMolnar/status/1353325765346123777
+</section>
+
+
+<section data-markdown class="todo">
+###  Motivation für eigene Regeln
   
+We know something about the real world, let us express this as a set of rules
+
+</section>
+
+<section data-markdown class="todo">
+### Framework für Wahrscheinlichkeiten einbauen
+
+Adhoc
+Blobs, in der Mitte, der 0815 Farer
+Verläufe, nimmt ab 65 ab, nimmt zu je schneller die Karre, nimmt mit zunehmendem Alter ab
+</section>
+
+<section data-markdown class="todo">
+###  Story
+
+- Was sind die Guiding Principles?
+   - Was haben wir implizit angenommen beim manuellen Ansatz? Was nehmen wir sonst an?
+
+###   Assumptions?
+
+*   There is an infinite number of possible decision boundaries
+   
+*   How should we constrain induction to get to a desired one?
+   
+*   How can we infer from post to future or from known to unknown?
+   
+* Is our code solution based on the way we are used to programm? Why not code in probability distributions?   
+
+  </section>
+
+
 <section data-markdown>
 ## Machine Learning
 ### ein Programm, das ein Programm schreibt
@@ -185,7 +231,7 @@ href='https://colab.research.google.com/drive/183bcemb82wAckph5DKfv2qTp6Spac3w_?
   
 ![](img/knn.png)
 
-96% accuracy
+96% accuracy, not perfect because of ambiguities
       </section>
     
 
@@ -205,7 +251,7 @@ Part of the known data has been held back for evaluation
 </section>
 
   <section data-markdown>
-### Applying the strong model on that data
+### Applying the "perfect" model on evaluation data
 
 ![](img/knn-test.png)
 
@@ -218,7 +264,7 @@ only 60% accuracy on unknown data
 
 ![](img/rules-test.png)
 
-66% accuracy is better and close to original score
+66% accuracy is better and close to original score on known data
 
       </section>
   
@@ -252,7 +298,7 @@ even that approach is not ideal, but the best we have
 * hand written rules tend to underfit
 * other approaches have other tendencies
 * you want to avoid both
-* depending on approach you need different measures for that
+* depending on approach you need different measures for avoiding overfitting and underfitting
   </section>
 
 
