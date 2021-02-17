@@ -71,7 +71,7 @@ In der klassischer Software-Entwicklung schreibt ein Entwickler anhand von Anfor
 Learning kann eine Lern-Strategie anhand von Daten ebenfalls ein Programm schreiben. Dies ist nicht offensichtlich, da
 ein manuell geschriebenes Programm aus Code besteht, während ein Machine Learning Modell davon abstrakt ist.
 
-In diesem Talk mache ich diesen Ansatz explizit indem ich aus einem abstrakten Machine Learning Modell Code generieren.
+In diesem Talk mache ich diesen Ansatz explizit indem ich aus einem abstrakten Machine Learning Modell Code generiere.
 Dabei lösen wir zusammen eine gegebene Aufgabe mit klassischer Programming, und trainieren zusätzliche ein Modell anhand
 von Daten. Am Ende vergleichen wir unseren handgeschriebenen Code mit dem erzeugten anhand von Qualitätsmerkmalen wie
 Lesbarkeit, Wartbarkeit, Testbarkeit und Interpretierbarkeit, wie gut die Aufgabe gelöst wird, etc. Als Bonus nutzen wir
@@ -106,13 +106,6 @@ Metriken auf Code anwenden
 
 
 <section data-markdown class="todo">
-###  Motivation für eigene Regeln
-  
-We know something about the real world, let us express this as a set of rules
-
-</section>
-
-<section data-markdown class="todo">
 ### Framework für Wahrscheinlichkeiten einbauen
 
 Adhoc
@@ -120,30 +113,18 @@ Blobs, in der Mitte, der 0815 Farer
 Verläufe, nimmt ab 65 ab, nimmt zu je schneller die Karre, nimmt mit zunehmendem Alter ab
 </section>
 
-<section data-markdown class="todo">
-###  Story
-
-- Was sind die Guiding Principles?
-   - Was haben wir implizit angenommen beim manuellen Ansatz? Was nehmen wir sonst an?
-
-###   Assumptions?
-
-*   There is an infinite number of possible decision boundaries
-   
-*   How should we constrain induction to get to a desired one?
-   
-*   How can we infer from post to future or from known to unknown?
-   
-* Is our code solution based on the way we are used to programm? Why not code in probability distributions?   
-
-  </section>
-
-
 <section data-markdown>
 ## Machine Learning
 ### ein Programm, das ein Programm schreibt
 
 </section>
+
+<section data-markdown>
+### Roadmap
+
+![](img/sketch.png)
+</section>
+	
 
 <section data-markdown>
   <textarea data-template>
@@ -167,6 +148,8 @@ Verläufe, nimmt ab 65 ab, nimmt zu je schneller die Karre, nimmt mit zunehmende
 ### Random Decision Boundaries
 
 ![](img/2-random-model.png)
+
+Background color indicates prediction
 </section>
   
 <section data-markdown>
@@ -186,8 +169,13 @@ accuracy = {\frac {correct\;predictions}{number\;of\;samples}}
 ![](img/2-random-model.png)
   </section>
 
+  <section data-markdown>
+## We know something about the real world, let us express this as a set of rules
+	</section>
+	
+	
 <section>
-<h3>Programmers like rules</h3>
+<h3>A first sketch</h3>
 <pre>
   <code>
   if speed < 100:
@@ -335,6 +323,17 @@ def nested_tree(speed, age):
 <p>Any idea what is wrong with this code?</p>
 </section>
 
+<section data-markdown>
+### From Assumptions to ML Model 
+	
+* There is an infinite number of possible decision boundaries
+* How should we constrain induction to get to a desired one?
+* How can we infer from post to future or from known to unknown?
+	
+	  </section>
+	
+	
+	
 
 
 			</div>
