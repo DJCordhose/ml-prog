@@ -79,10 +79,8 @@ unseren selbst geschriebenen Code als Lehrer für das Machine Learning Modell un
 Refactorings durch.
  -->
 
-<section data-markdown class="preparation">
-### preparation
-
-- Open Notebook: https://colab.research.google.com/drive/183bcemb82wAckph5DKfv2qTp6Spac3w_#scrollTo=gKxCb0NoOQjM  
+<!-- <section data-markdown class="preparation">
+https://colab.research.google.com/drive/183bcemb82wAckph5DKfv2qTp6Spac3w_?hl=en#scrollTo=LEt_LUcSbLhG
 </section>
 
 
@@ -95,6 +93,12 @@ Refactorings durch.
 Metriken auf Code anwenden
   </section>
   
+  <section data-markdown class="todo">
+Analogie des Orakels
+  - [ ] Orakel Regelengine aus dem Fachbereich
+  - [ ] Ableitung Metrik, Interp, Prod und Monitoring
+  - [ ] Test Oracle wie war das nochmal? Wie passt zu ML Oracle?  
+</section>
 
 <section data-markdown class="todo">
 ### Induction
@@ -111,7 +115,7 @@ Metriken auf Code anwenden
 Adhoc
 Blobs, in der Mitte, der 0815 Farer
 Verläufe, nimmt ab 65 ab, nimmt zu je schneller die Karre, nimmt mit zunehmendem Alter ab
-</section>
+</section> -->
 
 <section data-markdown>
 ## Machine Learning
@@ -144,35 +148,9 @@ Verläufe, nimmt ab 65 ab, nimmt zu je schneller die Karre, nimmt mit zunehmende
 ![](img/1-risk-data.png)
 </section>
   
-<section data-markdown>
-### Random Decision Boundaries
-
-![](img/2-random-model.png)
-
-Background color indicates prediction
-</section>
-  
-<section data-markdown>
-  <textarea data-template>
-### And let's introduce a metric for quality of any prediction        
-
-<script type="math/tex; mode=display">
-accuracy = {\frac {correct\;predictions}{number\;of\;samples}}
-</script>
-
-</textarea>
-</section>
-
-<section data-markdown>
-### Accuracy for guessing is just 1/3 = 33%
-  
-![](img/2-random-model.png)
-  </section>
-
   <section data-markdown>
 ## We know something about the real world, let us express this as a set of rules
 	</section>
-	
 	
 <section>
 <h3>A first sketch</h3>
@@ -195,6 +173,18 @@ href='https://colab.research.google.com/drive/183bcemb82wAckph5DKfv2qTp6Spac3w_?
 </section>
 
 <section data-markdown>
+	<textarea data-template>
+### A typical metric for quality of any prediction        
+
+<script type="math/tex; mode=display">
+accuracy = {\frac {correct\;predictions}{number\;of\;samples}}
+</script>
+  
+  </textarea>
+  </section>
+  
+  
+<section data-markdown>
 ### Best Model I could come up with
   
 ![](img/4-rule-based-model.png)
@@ -205,6 +195,8 @@ href='https://colab.research.google.com/drive/183bcemb82wAckph5DKfv2qTp6Spac3w_?
   <section data-markdown class="fragments">
 ### Taking one step back
   
+* did we really just code a few rules we had in our head?
+* this was also different from coding rules that have already been worked out, like legislative text
 * this was daten driven development
 * no formal specification given
 * was this test driven? 
@@ -258,10 +250,9 @@ only 60% accuracy on unknown data
   
 
   <section data-markdown class="fragments">
-### We have optimized for the wrong metric
+### Optimize for the right metric
 
-* our metric: accuracy on known data
-* if data is unambiguous we can always achieve 100%
+* if data is unambiguous we can always achieve 100% accuracy on known data
 * but we want the model to perform well on real world data
 * we need to work with what we have so we hold back some data
 * that data is not used for training, but for evaluation
@@ -323,18 +314,115 @@ def nested_tree(speed, age):
 <p>Any idea what is wrong with this code?</p>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
 ### From Assumptions to ML Model 
 	
 * There is an infinite number of possible decision boundaries
 * How should we constrain induction to get to a desired one?
 * How can we infer from post to future or from known to unknown?
 	
+	  </section> -->
+	
+<section data-markdown class="fragments">
+### We have not done any machine learning so far 
+
+this was just 
+* data driven coding
+* applying accuracy on a data set we work with and one held back
+* could help improve your code in many cases
+* of course requires that you have data available
+
 	  </section>
 	
-	
-	
+<section data-markdown class="fragments">
+### Why not let a machine do the data driven coding? 
 
+![](img/ml-prog.png)
+
+classic coding can obviously also benefit from data both for evaluation as well as for generating them
+	  </section>
+	
+	  <section data-markdown>
+### Decision Trees can learn such rules
+
+![](img/dt-all.png)
+
+	</section>
+
+
+<section data-markdown>
+### How is the Decision Tree being constructed?
+
+We are using the CART algorithm:
+* top-down split the set of examples into two new sets
+* choose a variable and a value at each step that best splits our customer example
+* terminal node when no further gain possible or regularization kicks in 
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### How is the Decision Tree being Constructed?
+
+<img src="img/cart.png" height=500>
+
+<small>
+    
+http://scikit-learn.org/stable/modules/tree.html#tree-algorithms-id3-c4-5-c5-0-and-cart
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+### What is the best split?
+
+* choose a feature to split on (either random or best)
+* assign a category to each node containing a certain set of samples
+* use a metric (Gini or Entropy) to decide how good a node would be based on that category
+* sum up weighted metric for both child nodes
+* optimize the split for that summed metric
+
+<small>
+
+https://machinelearningmastery.com/classification-and-regression-trees-for-machine-learning/
+
+</small>
+
+</section>
+
+<section data-markdown class="todo">
+### Results using decision trees
+
+inkl. Link auf Code, in Notebook kopieren
+</section>
+	
+<section data-markdown class="todo">
+### You can turn them into each other
+
+* caveat 1: in high dim code might not longer be comprehensible
+* caveat 2: creating a mesh grid for the training has exponential time and space complexity on dim
+* so: keep dim low if you want this to be practical 
+	</section>
+
+	<section data-markdown class="todo">
+### When to use which?
+	
+	Qualitätsmerkmalen wie
+	Lesbarkeit, Wartbarkeit, Testbarkeit und Interpretierbarkeit, wie gut die Aufgabe gelöst wird, etc.
+</section>
+
+<section data-markdown class="todo">
+### Idea 1: Refactor complex to into simpler code
+
+* Metric on test data still applies
+
+	</section>
+
+<section data-markdown class="todo">
+### Idea 2: Analyse legacy code decision tree
+
+* What is going on
+
+	</section>
 
 			</div>
 
