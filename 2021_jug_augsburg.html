@@ -57,6 +57,10 @@
     
     }
 
+    .preparation {
+      font-size: x-large;
+    }
+
 
 		</style>
 	</head>
@@ -83,12 +87,14 @@ unseren selbst geschriebenen Code als Lehrer für das Machine Learning Modell un
 Refactorings durch.
  -->
 
-<!-- <section data-markdown class="preparation">
-https://colab.research.google.com/drive/1lnHMwEBROP2fhtTFHSPkBfOGrkrIw-0J?hl=en
+<section data-markdown class="preparation">  
+### Öffnen
+
+- https://colab.research.google.com/drive/1lnHMwEBROP2fhtTFHSPkBfOGrkrIw-0J?hl=en
+- https://www.mentimeter.com/s/5cc1ccdf59161f0989ca79f40d9c70e7/094af1a95d43
 </section>
 
-
-<section data-markdown class="todo">
+<!-- <section data-markdown class="todo">
 - bit.ly-Link
 </section>
 
@@ -138,6 +144,13 @@ Diese Folien: https://bit.ly/ml-jug-augsburg
 
 </section>
 
+<section data-markdown>
+### Eine kleine Umfrage
+
+https://www.menti.com/9hq9bmakix
+</section>
+  
+
 
 <!-- Das ist eigentlich ein anderer Talk
 <section data-markdown>
@@ -163,6 +176,8 @@ Diese Folien: https://bit.ly/ml-jug-augsburg
 ### We have some data
 
 ![](img/1-risk-data.png)
+
+Can we predict the risk of an accident? 
 </section>
   
   <section data-markdown>
@@ -184,7 +199,7 @@ Diese Folien: https://bit.ly/ml-jug-augsburg
 <br>
 
 <a  class="fragment"
-href='https://colab.research.google.com/drive/1lnHMwEBROP2fhtTFHSPkBfOGrkrIw-0J?hl=en#scrollTo=z7l3lJU7dPPH'>
+href='https://colab.research.google.com/drive/1lnHMwEBROP2fhtTFHSPkBfOGrkrIw-0J?hl=en#scrollTo=LEt_LUcSbLhG'>
   We can do better, let's try together
 </a>
 </section>
@@ -239,6 +254,14 @@ Is the previous model better than ours?
   </section>
 
 <section data-markdown>
+### We really want this to work in production
+
+On data we have not seen before
+
+  </section>
+
+
+<section data-markdown>
 ## Let's simulate production
 
 ![](img/generalization.jpg)
@@ -247,6 +270,15 @@ Is the previous model better than ours?
 Part of the known data has been held back for evaluation
 </section>
 
+<section data-markdown>
+### The other part of our data
+
+![](img/test-data.png)
+
+We actually held back 40% of the data
+</section>
+    
+  
   <section data-markdown>
 ### Applying the "perfect" model on evaluation data
 
@@ -328,7 +360,7 @@ def nested_tree(speed, age):
 ...
 </code></pre>
 
-<p>Any idea what is wrong with this code?</p>
+<p>Is this good code?</p>
 </section>
 
 <!-- <section data-markdown>
@@ -389,7 +421,7 @@ http://scikit-learn.org/stable/modules/tree.html#tree-algorithms-id3-c4-5-c5-0-a
 </textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
 ### What is the best split?
 
 * choose a feature to split on (either random or best)
@@ -404,7 +436,7 @@ https://machinelearningmastery.com/classification-and-regression-trees-for-machi
 
 </small>
 
-</section>
+</section> -->
 
 <section data-markdown>
     <textarea data-template>
@@ -417,10 +449,10 @@ https://machinelearningmastery.com/classification-and-regression-trees-for-machi
 </textarea>
 </section>
 	
-<section data-markdown>
+<section data-markdown class="fragments">
 ### You can turn them into each other
 
-* use one classifier as a teacher for a machine learning algorithm
+* use any classifier (like our code) as a teacher for a machine learning algorithm
 * you do this by making predictions on a mesh grid as input
 * caveat 1: in high dim code might not longer be comprehensible
 * caveat 2: creating a mesh grid for the training has exponential time and space complexity on dim
@@ -435,11 +467,11 @@ https://machinelearningmastery.com/classification-and-regression-trees-for-machi
 </section> -->
 
 
-<section data-markdown>
+<section data-markdown class="fragments">
 ### What are possible applications
 
 * bring ML model into production as code
-* enhance hand written rules with training on data (on turn back into code)
+* enhance hand written rules with training on data (and turn back into code)
 * refactor complex into simpler code
 * analyse legacy code into something you can understand
 * explain hand written code using decision tree tools
@@ -521,6 +553,17 @@ easy to automatically generate explanation
 </section>
 
 <section data-markdown>
+  <textarea data-template>
+### Naive Gaussian Bayes
+
+![](img/plain-dt.png)
+
+60% on known and unknown data
+
+</textarea>
+</section>
+
+<section data-markdown>
     <textarea data-template>
 # Abschluss        
 </textarea>
@@ -576,7 +619,7 @@ https://oreilly.de/produkt/machine-learning-kurz-gut/
     <p>Diese Folien:
         <a href='https://bit.ly/ml-jug-augsburg'>https://bit.ly/ml-jug-augsburg</a>
     </p>
-	<p><strong>Kommt ins Gather-Town, Link per Zoom-Chat</strong></p>
+	<!-- <p><strong>Kommt ins Gather-Town, Link per Zoom-Chat</strong></p> -->
 
 </section>
 
